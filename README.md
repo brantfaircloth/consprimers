@@ -68,6 +68,22 @@ of generating pretty specific primers.
 ## map out primer positions in gallus and zfinch
 
     python make_primer_bed.py --configuration=db.conf \
-        --output=primers_mapped_to_chicken.bed --chicken
+        --output=galGal3.primers.200-5000.bed --chicken
+    
     python make_primer_bed.py --configuration=db.conf \
-        --output=primers_mapped_to_zfinch.bed
+        --output=taeGut1.primers.200-5000.bed
+
+## make a BED file for the cons regions ##
+
+    python make_cons_bed.py --conf=db.conf --cons-min=200 --cons-max=5000
+
+## get the amplicons created from each of the primers ##
+
+    python make_amplicons_from_primers.py 
+        --input=data/conserved/output/galGal3.primers.200-5000.bed 
+        --output=data/conserved/output/galGal3.amplicons.200-5000.bed
+
+## run the intersection of these with refseq genes on UCSC (07/21/2010) and ##
+## keep any results that cross a refseq gene at all.  Did this in the genome ##
+## browser and pasted BED filed into galGal.refseq.200-5000.bed
+
