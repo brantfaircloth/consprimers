@@ -83,7 +83,5 @@ of generating pretty specific primers.
         --input=data/conserved/output/galGal3.primers.200-5000.bed 
         --output=data/conserved/output/galGal3.amplicons.200-5000.bed
 
-## run the intersection of these with refseq genes on UCSC (07/21/2010) and ##
-## keep any results that cross a refseq gene at all.  Did this in the genome ##
-## browser and pasted BED filed into galGal.refseq.200-5000.bed
+## run the intersection of these with refseq genes on UCSC (07/21/2010) and keep any results that cross a refseq gene at all.  Did this in the genome browser and pasted BED filed into `galGal.refseq.200-5000.bed`
 
