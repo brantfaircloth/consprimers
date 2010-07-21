@@ -30,8 +30,8 @@ metavar='FILE')
 type='string', default = None, help='The path to the output file.', 
 metavar='FILE')
 
-    p.add_option('--chicken', dest = 'chicken', action='store_true', default=False, 
-help='Map to chicken sequence reads')
+    p.add_option('--chicken', dest = 'chicken', action='store_true', 
+default=False, help='Map to chicken sequence reads')
 
     (options,arg) = p.parse_args()
     if not options.conf:
@@ -54,7 +54,8 @@ def main():
         db=conf.get('Database','DATABASE')
     )
     cur = conn.cursor()
-    cur.execute('''SELECT distance_id, distance_close_target, left_p, right_p from primers where primer = 0''')
+    cur.execute('''SELECT distance_id, distance_close_target, left_p, right_p 
+        from primers where primer = 0''')
     data = cur.fetchall()
     #pdb.set_trace()
     outp = open(options.output, 'w')
@@ -93,9 +94,10 @@ def main():
             lp_end      = lp_start + int(lp.split(',')[1])
             rp_end      = end + (rp_start_temp)
             rp_start    = end + (rp_end_temp)
-            
-        outp.write('{0} {1} {2} {3} 1000 + {1} {2} 255,0,0\n'.format(chromo, lp_start, lp_end, upper_name))
-        outp.write('{0} {1} {2} {3} 1000 - {1} {2} 0,0,255\n'.format(chromo, rp_start, rp_end, lower_name))
+        outp.write('{0} {1} {2} {3} 1000 + {1} {2} 255,0,0\n'.format(chromo, 
+            lp_start, lp_end, upper_name))
+        outp.write('{0} {1} {2} {3} 1000 - {1} {2} 0,0,255\n'.format(chromo, 
+            rp_start, rp_end, lower_name))
     outp.close()
     conn.close()
     
