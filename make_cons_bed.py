@@ -65,7 +65,7 @@ def main():
     data = cur.fetchall()
     #pdb.set_trace()
     for d in data:
-        iden, target, query = d
+        iden, target_id, query = d
         # get params for iden
         cur.execute('''SELECT target_chromo, target_cons_start, 
             target_cons_end, query_chromo, query_cons_start, query_cons_end 
@@ -74,16 +74,16 @@ def main():
         iden_target = iden_row[0:3]
         iden_query  = iden_row[3:]
         cur.execute('''SELECT target_chromo, target_cons_start, 
-            target_cons_end FROM cons WHERE id = %s''', (target,))
+            target_cons_end FROM cons WHERE id = %s''', (target_id,))
         target = cur.fetchall()[0]
         cur.execute('''SELECT query_chromo, query_cons_start, 
             query_cons_end FROM cons WHERE id = %s''', (query,))
         query = cur.fetchall()[0]
         # write to outfiles
         target_file.write('{0} {1} {2} {3}\n'.format(iden_target[0], iden_target[1], iden_target[2], iden))
-        target_file.write('{0} {1} {2} {3}\n'.format(target[0], target[1], target[2], iden))
+        target_file.write('{0} {1} {2} {3}\n'.format(target[0], target[1], target[2], target_id))
         query_file.write('{0} {1} {2} {3}\n'.format(iden_query[0], iden_query[1], iden_query[2], iden))
-        query_file.write('{0} {1} {2} {3}\n'.format(query[0], query[1], query[2], iden))
+        query_file.write('{0} {1} {2} {3}\n'.format(query[0], query[1], query[2], target_id))
     target_file.close()
     query_file.close()
     cur.close()

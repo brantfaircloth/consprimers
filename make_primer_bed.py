@@ -71,8 +71,12 @@ def main():
         positions = cur.fetchall()
         start   = sorted([positions[0][2],  positions[1][2]])[0]
         end     = sorted([positions[0][3],  positions[1][3]])[1]
-        upper_name = '{0}_upper'.format(positions[0][0])
-        lower_name = '{0}_lower'.format(positions[0][0])
+        #pdb.set_trace()
+        d_pos = sorted([d[0], d[1]])
+        upper_name = '{0}-{1}_upper'.format(d_pos[0], d_pos[1])
+        lower_name = '{0}-{1}_lower'.format(d_pos[0], d_pos[1])
+        #upper_name = '{0}_upper'.format(positions[0][0])
+        #lower_name = '{0}_lower'.format(positions[0][0])
         # determine the actual position of the primer
         #pdb.set_trace()
         rp_start_temp = (start + int(rp.split(',')[0])) - end

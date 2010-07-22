@@ -58,6 +58,7 @@ def main():
         line2 = line2.split(' ')
         # ensure we have the same primer
         assert line1[3].split('_')[0] == line2[3].split('_')[0], "Primers !="
+        #pdb.set_trace()
         name = line1[3].split('_')[0]
         # ensure the start is less than the end
         assert int(line1[1]) < int(line2[2]), "Start-end mismatch"
